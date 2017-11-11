@@ -2,13 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector:'sandbox',
-    template:`<h1>{{ name }} is {{ age }}</h1>
-    <h2>{{person.firstName}} {{person.lastName}}</h2>
-    <ul>
-        <li>{{ 'Ala ma kota' }}</li>
-        <li>{{ 1 + 1 }}</li>
-        <li>{{ showAge() }}</li>
-    </ul>
+    template:`<h1>Hello</h1>
     `
 })
 
