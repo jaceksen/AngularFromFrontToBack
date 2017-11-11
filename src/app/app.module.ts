@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { SandboxComponent } from './components/sandbox.componet';
+import { SandboxComponent } from './components/sandbox/sandbox.componet';
 
 
 @NgModule({
