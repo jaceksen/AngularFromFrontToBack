@@ -1,30 +1,36 @@
 import { Component } from '@angular/core';
+import { Customer } from './customer';
 
 @Component({
     selector:'sandbox',
-    template:`<h1>Hello</h1>
+    template:`<h1>Hello {{ name }}</h1>
+    <h4>{{ customer.name }}</h4>
     `
 })
 
 export class SandboxComponent{
-    name = 'John Doe';
-    age = 35;
-    person = {
-        firstName:'Steve',
-        lastName:'Smith'
-    }
+    name:string = 'John Doe';
+    customer:Customer;
+    customers:Customer[];
 
     constructor(){
-        console.log('Konstruktor');
-        this.person.firstName='Jacek';
-        this.hasBirthday();
-    }
+        this.customer = {
+            id: 1,
+            name: 'Jacek',
+            email: 'jakis@email'
+        }
 
-    hasBirthday(){
-        this.age += 1;
-    }
-
-    showAge(){
-        return this.age;
+        this.customers = [
+            {
+                id: 2,
+                name: 'Rima',
+                email: 'rima@email'
+            },
+            {
+                id: 3,
+                name: 'Maja',
+                email: 'maja@email'
+            }
+        ]
     }
 }
