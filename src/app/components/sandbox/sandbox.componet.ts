@@ -3,30 +3,19 @@ import { Component } from '@angular/core';
 @Component({
     selector:'sandbox',
     template:`
-        <h1>Hello 
-        <!--
-        <span *ngIf="showName">{{name}}</span>
-        <span *ngIf="!showName">AAAA</span>
-        -->
-        <span *ngIf="showName; else noName">{{name}}</span>
-        <ng-template #noName>World</ng-template>
-        </h1>
-
-        <p>Hello {{ showName ? name : 'World1' }}</p>
-
-        <hr>
-
-        <div [ngSwitch]="greeting">
-            <div *ngSwitchCase="'1'">Hello 1</div>
-            <div *ngSwitchCase="'2'">Hello 2</div>
-            <div *ngSwitchDefault>Default</div>
-        </div>
-
-    `
+    <!--
+       <div><img src={{imageUrl}}></div>
+       <div><img [src]="imageUrl"></div>
+       <div><img bind-src="imageUrl"></div>
+    -->
+    
+    <h2>Create Post</h2>
+    <p [hidden]="isUnchanged">Post nr 1</p>
+    <button [disabled]="isUnchanged">Save</button>
+       `
 })
 
 export class SandboxComponent{
-    name:string = 'John Doe';
-    showName:boolean = true;
-    greeting:number = 2;
+    imageUrl = 'http://lorempixel.com/400/200';
+    isUnchanged:boolean = false;
 }
