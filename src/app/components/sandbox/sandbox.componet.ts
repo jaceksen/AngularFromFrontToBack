@@ -3,19 +3,34 @@ import { Component } from '@angular/core';
 @Component({
     selector:'sandbox',
     template:`
-    <!--
-       <div><img src={{imageUrl}}></div>
-       <div><img [src]="imageUrl"></div>
-       <div><img bind-src="imageUrl"></div>
-    -->
-    
-    <h2>Create Post</h2>
-    <p [hidden]="isUnchanged">Post nr 1</p>
-    <button [disabled]="isUnchanged">Save</button>
-       `
+        <h4 [class.special]="isSpecial">This class binding is special</h4>
+        <h4 [ngClass]="currentClasses">This is special and savable</h4>
+       `,
+       styles:[
+           `
+            .special{
+                color:green;
+            }
+            .savable{
+                text-transform:uppercase;
+            }
+           `
+       ]
 })
 
 export class SandboxComponent{
-    imageUrl = 'http://lorempixel.com/400/200';
-    isUnchanged:boolean = false;
+   isSpecial = true;
+   canSave = true;
+   currentClasses = {};
+
+   constructor(){
+       this.setCurrentClasses();
+   }
+
+   setCurrentClasses(){
+       this.currentClasses = {
+           savable:this.canSave,
+           special:this.isSpecial
+       }
+   }
 }
