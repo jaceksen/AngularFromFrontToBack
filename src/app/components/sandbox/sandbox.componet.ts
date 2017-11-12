@@ -4,33 +4,68 @@ import { Component } from '@angular/core';
     selector:'sandbox',
     template:`
 
-        <div class="container">
-
-        <form (submit)="onSubmit()">
-         <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" [(ngModel)]="name" name="name">
-         </div>
-         <input type="submit" class="btn btn-success" value="Submit">
-         </form>
-         <hr>
-         <ul class="list-group">
-            <li class="list-group-item" *ngFor="let user of users">{{ user }}</li>
-        </ul>
-         </div>
+    <div class="container">
+        <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="form-group">
+                <label>Name</label>
+                <input 
+                type="text" 
+                class="form-control"
+                [(ngModel)]="user.name"
+                name="name"
+                #userName="ngModel"
+                minlength="2"
+                required
+                >
+                <div *ngIf="userName.errors?.required && userName.touched" class="alert alert-danger">Name is required</div>
+                <div *ngIf="userName.errors?.minlength && userName.touched" class="alert alert-danger">Name should be at least 2 caracters.</div>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input 
+                type="text" 
+                class="form-control"
+                [(ngModel)]="user.email"
+                name="email"
+                #userEmail="ngModel"
+                required
+                >
+                <div *ngIf="userEmail.errors?.required && userEmail.touched" class="alert alert-danger">Email is required</div>
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input 
+                type="text" 
+                class="form-control"
+                [(ngModel)]="user.phone"
+                name="phone"
+                #userPhone="ngModel"
+                minlength="10"
+                >
+                <div *ngIf="userPhone.errors?.minlength && userPhone.touched" class="alert alert-danger">Phone should be at least 10 caracters.</div>
+             </div>
+             <input type="submit" class="btn btn-success" value="Submit">
+        </form>
+    </div>
 
         `
 })
 
 export class SandboxComponent{
 
-    name:string;
-    users:string[] = ['Jacek Seń','Rima Avetyan','Maja Seń'];
-
-    onSubmit(){
-        console.log(this.name);
-        this.users.push(this.name);
-        this.name='';
+    user = {
+        name:'',
+        email:'',
+        phone:''
     }
+
+    onSubmit({value, valid}){
+        if(valid){
+            console.log(value);
+        } else {
+            console.log('Form is invalid');
+        }
+    }
+    
 
 }
