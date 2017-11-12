@@ -4,33 +4,52 @@ import { Component } from '@angular/core';
     selector:'sandbox',
     template:`
 
-    <button (click)="changeValue()">ChangeValue</button>
-    <br><br>
+        <input it="txt1" type="text" (keyup)="fireEvent($event)" placeholder="key up">
 
-    <h1> {{ text }}</h1>
+        <br><br>
 
-    <div *ngIf="value">
-        <h1>Tralalala</h1>
-    </div>
+        <div> 
+        <input type="text" (keyup)="changeText($event)" placeholder="key up event">
+        </div>
+
+        <br><br>
+        <h2>{{ text }}</h2>
+
+        <br><br>
+        
+        <div> 
+        <input type="text" (keyup)="changeText2($event)" placeholder="key up event 2 way" value={{text2}}>
+        </div>
+        
+       <br><br>
+        <h2>{{ text2 }}</h2>
 
         `
 })
 
+// keydown
+// focus
+// blur - kiedy jeste w danym polu w formatce i kliknę gdzie indziej
+// cut
+// copy
+// paste
+
 export class SandboxComponent{
+    
+    text:string="one way";
+    text2:string="two way";
 
-    text:string='Hello World';
-    value:boolean=true;
+    fireEvent(e){
+        console.log('keyUp');
+    }
 
-    changeValue(){
-        this.text = 'Goodbye World';
-        //za pomocą ifów
-        // if(this.value){
-        //     this.value = false;
-        // } else {
-        //     this.value = true;
-        // }
-        //lub inny sposób
-        //ustawia zawsze na przeciwną wartość
-        this.value = !this.value;
+    //one way data bindig
+    changeText(e){
+        this.text = e.target.value;
+    }
+
+    //two way data binding
+    changeText2(m){
+        this.text2 = m.target.value;
     }
 }
