@@ -3,34 +3,25 @@ import { Component } from '@angular/core';
 @Component({
     selector:'sandbox',
     template:`
-        <h4 [class.special]="isSpecial">This class binding is special</h4>
-        <h4 [ngClass]="currentClasses">This is special and savable</h4>
-       `,
-       styles:[
-           `
-            .special{
-                color:green;
-            }
-            .savable{
-                text-transform:uppercase;
-            }
-           `
-       ]
+    <p>
+    My birthday is {{birthday | date}}
+    </p>
+
+    <p>
+    My birthday is {{birthday | date:"MM-dd-yyyy"}}
+    </p>
+
+    <p>I love {{ 'cake' | uppercase }}.</p>
+
+    <p>Your total is {{ total | currency:"PLN":"1"}}</p>
+    <p>Your total is {{ total | currency:"PLN"}}</p>
+    <p>Our fee is {{ fee | percent }}.</p>
+
+        `
 })
 
 export class SandboxComponent{
-   isSpecial = true;
-   canSave = true;
-   currentClasses = {};
-
-   constructor(){
-       this.setCurrentClasses();
-   }
-
-   setCurrentClasses(){
-       this.currentClasses = {
-           savable:this.canSave,
-           special:this.isSpecial
-       }
-   }
+  birthday = new Date(1981,1,15);
+  total:number = 500;
+  fee:number = 0.23;
 }
