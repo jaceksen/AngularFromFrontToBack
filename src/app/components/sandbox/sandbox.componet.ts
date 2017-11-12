@@ -3,25 +3,53 @@ import { Component } from '@angular/core';
 @Component({
     selector:'sandbox',
     template:`
-    <p>
-    My birthday is {{birthday | date}}
-    </p>
 
-    <p>
-    My birthday is {{birthday | date:"MM-dd-yyyy"}}
-    </p>
+    <button id="btn" (click)="fireEvent($event,'Hello')">Kliknij mnie</button>
 
-    <p>I love {{ 'cake' | uppercase }}.</p>
+    <button id="btn1" (mouseover)="fireEvent2($event)">MouseOver</button>
 
-    <p>Your total is {{ total | currency:"PLN":"1"}}</p>
-    <p>Your total is {{ total | currency:"PLN"}}</p>
-    <p>Our fee is {{ fee | percent }}.</p>
+    <button id="btn2" (mousedown)="fireEvent3($event)">MouseDown</button>
+
+    <br><br>
+
+    <button id="btn3" (mouseup)="fireEvent4($event)">MouseUp</button>
+
+    <button id="btn4" (dblclick)="fireEvent5($event)">DoubleClick</button>
+
+    <button id="btn5" (drag)="fireEvent6($event)">Drag Event</button>
+
+    <!--
+    dragover
+    -->
 
         `
 })
 
 export class SandboxComponent{
-  birthday = new Date(1981,1,15);
-  total:number = 500;
-  fee:number = 0.23;
+    fireEvent(e, greeting){
+        console.log('kliknięty ' + greeting);
+        console.log(e);
+        console.log(e.target);
+        console.log(e.target.id);
+    }
+
+    fireEvent2(e){
+        console.log(e.target.id);
+    }
+
+    fireEvent3(e){
+        console.log(e.target.id);
+    }
+
+    fireEvent4(e){
+        console.log(e.target.id);
+    }
+
+    fireEvent5(e){
+        console.log(e.target.id);
+    }
+
+    fireEvent6(e){
+        console.log(e.target.id);
+    }
 }
