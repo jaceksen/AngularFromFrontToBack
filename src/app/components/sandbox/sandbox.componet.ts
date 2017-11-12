@@ -4,52 +4,28 @@ import { Component } from '@angular/core';
     selector:'sandbox',
     template:`
 
-        <input it="txt1" type="text" (keyup)="fireEvent($event)" placeholder="key up">
-
-        <br><br>
-
-        <div> 
-        <input type="text" (keyup)="changeText($event)" placeholder="key up event">
+    <div class="container">
+    <form>
+        <div class="form-group">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="name" name="name" class="form-control">
         </div>
-
-        <br><br>
-        <h2>{{ text }}</h2>
-
-        <br><br>
-        
-        <div> 
-        <input type="text" (keyup)="changeText2($event)" placeholder="key up event 2 way" value={{text2}}>
+        <div class="form-group">
+        <label>Age</label>
+        <input type="number" [(ngModel)]="age" name="age" class="form-control">
         </div>
-        
-       <br><br>
-        <h2>{{ text2 }}</h2>
+        <input type="submit" value="Submit" class="btn btn-success">
+    </form>
+
+    <h4>Name: {{name}}</h4>
+    <h4>Age: {{age}}</h4>
+    </div>
 
         `
 })
 
-// keydown
-// focus
-// blur - kiedy jeste w danym polu w formatce i kliknę gdzie indziej
-// cut
-// copy
-// paste
-
 export class SandboxComponent{
     
-    text:string="one way";
-    text2:string="two way";
-
-    fireEvent(e){
-        console.log('keyUp');
-    }
-
-    //one way data bindig
-    changeText(e){
-        this.text = e.target.value;
-    }
-
-    //two way data binding
-    changeText2(m){
-        this.text2 = m.target.value;
-    }
+    name:string;
+    age:number = 0;
 }
