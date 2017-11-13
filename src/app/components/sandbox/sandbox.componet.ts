@@ -33,7 +33,9 @@ import { DataService } from '../../services/data.service';
                     <li class="list-group-item list-group-item-success">Email: {{user.email}}</li>
                     <li class="list-group-item list-group-item-warning">Phone: {{user.phone}}</li>
                 </ul>
+                <button class="btn btn-danger btn-sm" (click)="onDeleteClick(user.id)">Delete</button>
             </div>
+            
             <br>
         </div>
         </div>
@@ -61,6 +63,18 @@ export class SandboxComponent{
         this.dataService.addUser(this.user).subscribe(user => {
             console.log(user);
             this.users.unshift(user);
+        });
+    }
+
+    onDeleteClick(id){
+        console.log(id);
+        this.dataService.deleteUser(id).subscribe(res => {
+            console.log(res);
+            for(let i=0; i<this.users.length; i++){
+                if(this.users[i].id == id){
+                    this.users.splice(i,1);
+                }
+            }
         });
     }
 
