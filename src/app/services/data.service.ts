@@ -1,37 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Http } from '@angular/http';
+//chcemy to zo zostanie zwrócone z netu zamoapować na jsona
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DataService{
-    data: Observable<Array<number>>;
 
-    constructor(){        
+    constructor(public http:Http){        
     }
 
-    getData(){
-       this.data = new Observable(obsrver => {
-            setTimeout(() => {
-                obsrver.next(1);
-            },1000);
-
-            setTimeout(() => {
-                obsrver.next(2);
-            },2000);
-
-            setTimeout(() => {
-                obsrver.next(3);
-            },3000);
-
-            setTimeout(() => {
-                obsrver.next('Hello');
-            },4000);
-
-            setTimeout(() => {
-                obsrver.complete();
-            },5000);
-       });
-
-       return this.data;
+    getUsers(){
+        return this.http.get('https://jsonplaceholder.typicode.com/users')
+            .map(res => res.json());
     }
 
 }
